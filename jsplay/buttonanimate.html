@@ -1,0 +1,49 @@
+<html>
+
+<head>
+<style>
+#first {
+    transition:all .2s linear;  
+}
+
+#secondContainer {
+    float:left;
+    background-color:blue;
+    transition: all .2s linear;
+}
+#second {
+    float:left;
+}
+#secondContainer:hover {
+    transform: scale(1.2);
+    transform-origin: bottom left;
+}
+
+
+
+</style>
+
+</head>
+<body>
+
+<h1 id="first">Bruhhhh</h1>
+<div id="secondContainer">
+<h1 id="second">Hirokshabadan</h1>
+</div>
+<button onclick="animateTitle()">LOL</button>
+
+
+<script>
+var transForm = 20;
+function animateTitle(){
+    document.getElementById("first").style.color = "blue";
+    document.getElementById("first").style.background = "red";
+    transForm += 10;
+    document.getElementById("secondContainer").style.transform = "rotate(" + transForm + "deg)";
+    repeater = setTimeout(animateTitle(), 1000);
+}
+
+</script>
+
+</body>
+</html>
