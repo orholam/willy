@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style>
+    body {
+        text-align:center;
+    }
+    section {
+        display: inline-block;
+        border: 1px solid grey;
+        border-radius: 10px;
+        width: 350px;
+        margin: 20px;
+    }
+    #tic {
+        display:inline-block; 
+        width: 300px;
+        height:300px;
+        margin: 20px;
+    }
+    .tac {
+        float:left; 
+        width: 31%; 
+        height: 31%; 
+        margin: 1%;
+        background-color: rgb(201, 240, 241);
+        border-radius: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+</style>
+</head>
+<body>
+    <section>
+        <div id="tic">
+            <div id="tac1" class="tac" onClick = "update(0,0)"> </div>
+            <div id="tac2" class="tac" onClick = "update(0,1)"> </div>
+            <div id="tac3" class="tac" onClick = "update(0,2)"> </div>
+            <div id="tac4" class="tac" onClick = "update(1,0)"> </div>
+            <div id="tac5" class="tac" onClick = "update(1,1)"> </div>
+            <div id="tac6" class="tac" onClick = "update(1,2)"> </div>
+            <div id="tac7" class="tac" onClick = "update(2,0)"> </div>
+            <div id="tac8" class="tac" onClick = "update(2,1)"> </div>
+            <div id="tac9" class="tac" onClick = "update(2,2)"> </div>
+        </div>
+        <div id="score">
+
+        </div>
+    </section>
+</body>
+<script>
+    let turn = "x";
+    const game = [[1,1,1],[1,1,1],[1,1,1]];
+
+    function printScore(winner) {
+        document.getElementById("score").innerHTML = "<h2>" + winner + " won! </h2>";
+    }
+    function checkWin() {
+        //console.log(game)
+        for (i=0;i<3;i++) {
+            //console.log("i is " + i);
+            if ((game[i][0] === game[i][1]) && (game[i][0] === game[i][2])){
+                if ((game[i][0] === "x") || (game[i][0] === "o")) {
+                    printScore(game[i][0]);
+                }
+            }
+            if ((game[0][i] === game[1][i]) && (game[0][i] === game[2][i])){
+                if ((game[0][i] === "x") || (game[0][i] === "o")) {
+                    printScore(game[0][i]);
+                }
+            }
+        }
+        if ((game[0][0] === game[1][1]) && (game[0][0] === game[2][2])) {
+            if ((game[0][0] === "x") || (game[0][0] === "o")) {
+                printScore(game[0][0]);
+
+            }
+        }
+        if ((game[0][2] === game[1][1]) && (game[0][2] === game[2][0])) {
+            if ((game[0][2] === "x") || (game[0][2] === "o")) {
+                printScore(game[0][2]);
+
+            }
+        }
+    }
+    function updateVisual() {
+        counter = 0;
+        for (i=0;i<3;i++) {
+            for (j=0;j<3;j++) {
+                counter++;
+                podnum = "tac" + counter;
+                if (game[i][j] !== 1){
+                    document.getElementById(podnum).innerHTML = "<p>" + game[i][j] + "</p>";
+                }
+            }
+        }
+    }
+    function update(left,right) {
+        if (game[left][right] === 1) {
+            game[left][right] = turn;
+            turn === "x" ? turn = "o" : turn = "x";
+            document.getElementById("score").innerHTML = '<p>' + game + '</p>';
+            updateVisual();
+            checkWin();
+        }
+        
+    }
+</script>
+</html>
