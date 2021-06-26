@@ -29,11 +29,31 @@
         display: flex;
         align-items: center;
         justify-content: center;
+        font-size: 200%;
+        color: darkslategrey;
+        transition: all .2s linear;
+    }
+    .tac:hover {
+        box-shadow: 0 0 0 2px darkslategrey;
+        transition: all .2s linear;
+    }
+    #reset {
+        padding: 15px;
+        margin-bottom: 10px;
+        width: 50%;
+        border-radius:10px;
+        border: none;
+        transition: all .1s linear;
+    }
+    #reset:hover {
+        background-color: lightgrey;
+        transition: all .1s linear;
     }
 </style>
 </head>
 <body>
     <section>
+        <h1> Tic Tac Toe</h1>
         <div id="tic">
             <div id="tac1" class="tac" onClick = "update(0,0)"> </div>
             <div id="tac2" class="tac" onClick = "update(0,1)"> </div>
@@ -48,11 +68,12 @@
         <div id="score">
 
         </div>
+     <button id="reset" onClick="reset()">New Game</button>
     </section>
 </body>
 <script>
     let turn = "x";
-    const game = [[1,1,1],[1,1,1],[1,1,1]];
+    let game = [[1,1,1],[1,1,1],[1,1,1]];
 
     function printScore(winner) {
         document.getElementById("score").innerHTML = "<h2>" + winner + " won! </h2>";
@@ -94,6 +115,9 @@
                 if (game[i][j] !== 1){
                     document.getElementById(podnum).innerHTML = "<p>" + game[i][j] + "</p>";
                 }
+                else {
+                    document.getElementById(podnum).innerHTML = "";
+                }
             }
         }
     }
@@ -105,7 +129,12 @@
             updateVisual();
             checkWin();
         }
+    }
         
+    function reset() {
+        game = [[1,1,1],[1,1,1],[1,1,1]];
+        updateVisual();
+        document.getElementById("score").innerHTML = '<p>' + game + '</p>';
     }
 </script>
 </html>
